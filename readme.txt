@@ -5,8 +5,8 @@ Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Requires at least: 2.7
-Tested up to: 3.4.1
-Stable tag: 10.0
+Tested up to: 3.5
+Stable tag: 10.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,9 @@ Q5. How To change the captcha color scheme?
 
 == Upgrade Notice ==
 
+= 10.1 =
+Tested up to 3.5
+
 = 10.0 =
 New demo link, www.gopiplus.com
 
@@ -140,6 +143,9 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 10.1 =
+Tested up to 3.5
 
 = 10.0 =
 New demo link, www.gopiplus.com
