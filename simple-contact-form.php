@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R
-Version: 10.1
+Version: 11.0
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -127,12 +127,11 @@ function gCF_widget_init()
 
 function gCF_deactivation() 
 {
-	
+	// No action required
 }
 
 function gCF_admin()
 {
-
 ?>
 <div class="wrap">
   <div class="tool-box">
@@ -248,7 +247,6 @@ function gCF_admin()
 </div>
 <?php
 }
-
 
 function gCF_add_to_menu() 
 {

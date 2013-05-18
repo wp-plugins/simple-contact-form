@@ -80,10 +80,9 @@ echo '</table>';
 <ol>
 	<li>Drag and drop the widget</li>
 	<li>Paste the given short code to your PHP file.</li>
-	<li>Plugin short code available for pages/post</li>
 </ol>
 
 <strong>Send Mails/Newsletters to those entered emails</strong>
 <p>Admin can send the Mails/Newsletters to those entered emails via my another famous plugin (<strong><a target="_blank" href="http://www.gopiplus.com/work/2010/09/25/email-newsletter/">Email newsletter plugin</a></strong>) </p>
-Check official website for more information <a target="_blank" href='http://www.gopiplus.com/work/2010/07/18/simple-contact-form/'>click here</a><br>
+Check official website for more information <a target="_blank" href="http://www.gopiplus.com/work/2010/07/18/simple-contact-form/">click here</a><br>
 </div>
