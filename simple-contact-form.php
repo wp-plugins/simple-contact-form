@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R
-Version: 11.0
+Version: 11.1
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -106,10 +106,8 @@ function gCF_widget($args)
 	
 function gCF_control() 
 {
-	
-	echo 'To change the setting goto Simple contact form link on Setting menu.';
-	echo '<br><a href="options-general.php?page=simple-contact-form/setting.php">';
-	echo 'click here</a></p>';
+	echo 'To change the setting goto <b>Simple contact form</b> link on <b>Settings</b> menu.';
+	echo '<br><a href="options-general.php?page=simple-contact-form">click here</a></p>';
 }
 
 function gCF_widget_init()
@@ -132,128 +130,25 @@ function gCF_deactivation()
 
 function gCF_admin()
 {
-?>
-<div class="wrap">
-  <div class="tool-box">
-    <?php
-
 	global $wpdb;
-	$gcf_table = get_option('gCF_table');
-	
-	$chk_delete = @$_POST['chk_delete'];
-	if(!empty($chk_delete))
+	$current_page = isset($_GET['ac']) ? $_GET['ac'] : '';
+	$gCF_table = get_option('gCF_table');
+	switch($current_page)
 	{
-		$count = count($chk_delete);
-		for($i=0; $i<$count; $i++)
-		{
-			$del_id = $chk_delete[$i];
-			$sql = "delete FROM $gcf_table WHERE gCF_id=".$del_id;
-			$wpdb->get_results($sql);
-		}
+		case 'set':
+			include('pages/content-setting.php');
+			break;
+		default:
+			include('pages/content-management-show.php');
+			break;
 	}
-	
-
-	if(@$_GET["AC"]=="DEL" && @$_GET["DID"] > 0) 
-	{ 
-	
-		$wpdb->get_results("delete from $gcf_table where gCF_id=".@$_GET["DID"]);
-	}
-	
-	$data = $wpdb->get_results("select * from $gcf_table order by gCF_id desc");
-	if ( empty($data) ) 
-	{ 
-		echo "<div id='message' class='error'><p>No data found. Click setting page to change the settings.</p></div>";
-	}
-	
-	?>
-    <h2>Simple contact form</h2>
-    <table width="100%" style="padding-bottom:10px;padding-top:10px;">
-      <tr>
-        <td align="right">
-		<input name="text_management" lang="text_management" class="button-primary" onClick="location.href='options-general.php?page=simple-contact-form/simple-contact-form.php'" value="Go to - View contact details" type="button" />
-        <input name="setting_management" lang="setting_management" class="button-primary" onClick="location.href='options-general.php?page=simple-contact-form/setting.php'" value="Go to - Setting Page" type="button" />
-		<input name="Help" lang="publish" class="button-primary" onclick="window.open('http://www.gopiplus.com/work/2010/07/18/simple-contact-form/');" value="Help" type="button" />
-		</td>
-      </tr>
-    </table>
-    <script language="javascript" type="text/javascript">
-	function _dealdelete(id)
-	{
-		if(confirm("Do you want to delete this record?"))
-		{
-			document.frm.action="options-general.php?page=simple-contact-form/simple-contact-form.php&AC=DEL&DID="+id;
-			document.frm.submit();
-
-		}
-	}	
-	
-	function _multipledelete()
-	{
-		if(confirm("Do you want to delete the selected record(s)?"))
-		{
-			if(confirm("Are you sure you want to delete?"))
-			{
-				document.frm.action="options-general.php?page=simple-contact-form/simple-contact-form.php";
-				document.frm.submit();
-			}
-		}
-	}
-	</script>
-    <form name="frm" method="post" onsubmit="return _multipledelete();">
-      <table width="100%" class="widefat" id="straymanage">
-        <thead>
-          <tr>
-		  	<th align="left"></th>
-            <th align="left">Name</th>
-            <th align="left">Email</th>
-            <th align="left">Message</th>
-            <th align="left">Date</th>
-            <th align="left">IP</th>
-            <th align="left"></th>
-          </tr>
-        <thead>
-        <tbody>
-          <?php 
-    	$i = 0;
-    	foreach ( $data as $data ) { 
-		$_date = mysql2date(get_option('date_format'), $data->gCF_date);
-    	?>
-          <tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
-		  	<td align="left"><input name="chk_delete[]" id="chk_delete[]" type="checkbox" value="<?php echo(stripslashes($data->gCF_id)); ?>" /></td>
-            <td align="left"><?php echo(stripslashes($data->gCF_name)); ?></td>
-            <td align="left"><?php echo(stripslashes($data->gCF_email)); ?></td>
-            <td align="left"><?php echo(stripslashes($data->gCF_message)); ?></td>
-            <td align="left"><?php echo($_date); ?></td>
-            <td align="left"><?php echo(stripslashes($data->gCF_ip)); ?></td>
-            <td align="left"><a title="Delete" onClick="javascript:_dealdelete('<?php echo($data->gCF_id); ?>')" href="javascript:void(0);"></a> </td>
-          </tr>
-          <?php $i = $i+1; } ?>
-        </tbody>
-      </table>
-    <table width="100%" style="padding-bottom:10px;padding-top:10px;">
-      <tr>
-	  <td align="left"><input class="button-primary"  name="multidelete" type="submit" id="multidelete" value="Delete Multiple Records"></td>
-        <td align="right">
-		<input name="text_management" lang="text_management" class="button-primary" onClick="location.href='options-general.php?page=simple-contact-form/simple-contact-form.php'" value="Go to - View contact details" type="button" />
-          <input name="setting_management" lang="setting_management" class="button-primary" onClick="location.href='options-general.php?page=simple-contact-form/setting.php'" value="Go to - Setting Page" type="button" />
-		  <input name="Help" lang="publish" class="button-primary" onclick="window.open('http://www.gopiplus.com/work/2010/07/18/simple-contact-form/');" value="Help" type="button" /></td>
-      </tr>
-    </table>
-	</form>
-    <strong>Send Mails/Newsletters to above contact emails</strong>
-  		<p>Admin can send the HTML Mails/Newsletters to those emails via my another famous plugin (<strong><a target="_blank" href="http://www.gopiplus.com/work/2010/09/25/email-newsletter/">Email newsletter plugin</a></strong>) </p>
-
-  </div>
-</div>
-<?php
 }
 
 function gCF_add_to_menu() 
 {
 	if (is_admin()) 
 	{
-		add_options_page('Simple contact form', 'Simple contact form', 'manage_options', __FILE__, 'gCF_admin' );
-		add_options_page('Simple contact form', '', 'manage_options', "simple-contact-form/setting.php",'' );
+		add_options_page('Simple contact form', 'Simple contact form', 'manage_options', 'simple-contact-form', 'gCF_admin' );
 	}
 }
 
