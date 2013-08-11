@@ -46,7 +46,6 @@
 		<?php
 	}
 	?>
-	<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/continuous-announcement-scroller/pages/setting.js"></script>
     <form name="gCF_form" method="post" action="">
         <h3>Widget setting</h3>
 		
