@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R
-Version: 11.1
+Version: 11.2
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -13,6 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 function gCF()
 {
+	$display = "";
 	if(is_home() && get_option('gCF_On_Homepage') == 'YES') {	$display = "show";	}
 	if(is_single() && get_option('gCF_On_Posts') == 'YES') {	$display = "show";	}
 	if(is_page() && get_option('gCF_On_Pages') == 'YES') {	$display = "show";	}
@@ -24,19 +25,19 @@ function gCF()
 		?>
 		<form action="#" name="gcf" id="gcf">
 		  <div class="gcf_title"> <span id="gcf_alertmessage"></span> </div>
-		  <div class="gcf_title"> Your name </div>
+		  <div class="gcf_title"> <?php _e('Your name', 'simple-contact-form'); ?> </div>
 		  <div class="gcf_title">
 			<input name="gcf_name" class="gcftextbox" type="text" id="gcf_name" maxlength="120">
 		  </div>
-		  <div class="gcf_title"> Your email </div>
+		  <div class="gcf_title"> <?php _e('Your email', 'simple-contact-form'); ?> </div>
 		  <div class="gcf_title">
 			<input name="gcf_email" class="gcftextbox" type="text" id="gcf_email" maxlength="120">
 		  </div>
-		  <div class="gcf_title"> Enter your message </div>
+		  <div class="gcf_title"> <?php _e('Enter your message', 'simple-contact-form'); ?> </div>
 		  <div class="gcf_title">
 			<textarea name="gcf_message" class="gcftextarea" rows="3" id="gcf_message"></textarea>
 		  </div>
-		  <div class="gcf_title"> Enter below security code </div>
+		  <div class="gcf_title"> <?php _e('Enter below security code', 'simple-contact-form'); ?> </div>
 		  <div class="gcf_title">
 			<input name="gcf_captcha" class="gcftextbox" type="text" id="gcf_captcha" maxlength="6">
 		  </div>
@@ -87,6 +88,7 @@ function gCF_install()
 
 function gCF_widget($args) 
 {
+	$display = "";
 	if(is_home() && get_option('gCF_On_Homepage') == 'YES') {	$display = "show";	}
 	if(is_single() && get_option('gCF_On_Posts') == 'YES') {	$display = "show";	}
 	if(is_page() && get_option('gCF_On_Pages') == 'YES') {	$display = "show";	}
@@ -106,20 +108,25 @@ function gCF_widget($args)
 	
 function gCF_control() 
 {
-	echo 'To change the setting goto <b>Simple contact form</b> link on <b>Settings</b> menu.';
-	echo '<br><a href="options-general.php?page=simple-contact-form">click here</a></p>';
+	echo '<p><b>';
+	_e('Simple contact form', 'simple-contact-form');
+	echo '.</b> ';
+	_e('Check official website for more information', 'simple-contact-form');
+	?> <a target="_blank" href="http://www.gopiplus.com/work/2010/07/18/simple-contact-form/"><?php _e('click here', 'simple-contact-form'); ?></a></p><?php
 }
 
 function gCF_widget_init()
 {
 	if(function_exists('wp_register_sidebar_widget')) 
 	{
-		wp_register_sidebar_widget('Simple contact form', 'Simple contact form', 'gCF_widget');
+		wp_register_sidebar_widget( __('Simple contact form', 'simple-contact-form'), 
+					__('Simple contact form', 'simple-contact-form'), 'gCF_widget');
 	}
 	
 	if(function_exists('wp_register_widget_control')) 
 	{
-		wp_register_widget_control('Simple contact form', array('Simple contact form', 'widgets'), 'gCF_control');
+		wp_register_widget_control( __('Simple contact form', 'simple-contact-form'), 
+					array( __('Simple contact form', 'simple-contact-form'), 'widgets'), 'gCF_control');
 	} 
 }
 
@@ -148,7 +155,8 @@ function gCF_add_to_menu()
 {
 	if (is_admin()) 
 	{
-		add_options_page('Simple contact form', 'Simple contact form', 'manage_options', 'simple-contact-form', 'gCF_admin' );
+		add_options_page( __('Simple contact form', 'simple-contact-form'), 
+				__('Simple contact form', 'simple-contact-form'), 'manage_options', 'simple-contact-form', 'gCF_admin' );
 	}
 }
 
@@ -161,6 +169,12 @@ function gCF_add_javascript_files()
 	}
 }   
 
+function gCF_textdomain() 
+{
+	  load_plugin_textdomain( 'simple-contact-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action('plugins_loaded', 'gCF_textdomain');
 add_action('admin_menu', 'gCF_add_to_menu');
 add_action('wp_enqueue_scripts', 'gCF_add_javascript_files');
 add_action("plugins_loaded", "gCF_widget_init");

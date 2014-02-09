@@ -5,8 +5,8 @@ Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Requires at least: 3.4
-Tested up to: 3.6
-Stable tag: 11.1
+Tested up to: 3.8
+Stable tag: 11.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,7 +80,6 @@ To change the Captcha color scheme.
 
 We have 2 option to configure this plugin [click here](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)  to see more info.
 
-
 == Frequently Asked Questions ==
 
 Q1. How to customize this plugin?
@@ -97,11 +96,19 @@ Q5. How To change the captcha color scheme?
 
 == Screenshots ==
 
-1. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+1. Front Screen. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 
-2. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+2. Admin Screen. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+
+3. Admin Screen. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 
 == Upgrade Notice ==
+
+= 11.2 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (simple-contact-form.po) available in the languages folder.
 
 = 11.1 =
 1. Changes in admin layout.
@@ -151,6 +158,12 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 11.2 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (simple-contact-form.po) available in the languages folder.
 
 = 11.1 =
 1. Changes in admin layout.

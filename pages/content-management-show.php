@@ -21,7 +21,7 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 		
 		if ($result != '1')
 		{
-			?><div class="error fade"><p><strong>Oops, selected details doesn't exist (1).</strong></p></div><?php
+			?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist.', 'simple-contact-form'); ?></strong></p></div><?php
 		}
 		else
 		{
@@ -39,13 +39,12 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 				
 				//	Set success message
 				$gCF_success_msg = TRUE;
-				$gCF_success = __('Selected record was successfully deleted.', gCF_UNIQUE_NAME);
+				$gCF_success = __('Selected record was successfully deleted.', 'simple-contact-form');
 			}
 		}
 	}
 	else
 	{
-		
 		//	Just security thingy that wordpress offers us
 		check_admin_referer('gCF_form_show');
 		
@@ -59,7 +58,7 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 			$wpdb->query($sSql);
 			//	Set success message
 			$gCF_success_msg = TRUE;
-			$gCF_success = __('Selected record(s) was successfully deleted.', gCF_UNIQUE_NAME);
+			$gCF_success = __('Selected record(s) was successfully deleted.', 'simple-contact-form');
 		}
 	}
 	
@@ -70,27 +69,27 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 }
 ?>
 <script language="javascript" type="text/javascript">
-	function _gCF_delete(id, pagenum)
+function _gCF_delete(id, pagenum)
+{
+	if(confirm("Do you want to delete this record?"))
 	{
-		if(confirm("Do you want to delete this record?"))
-		{
-			document.frm_gCF_display.action="options-general.php?page=simple-contact-form&pagenum="+pagenum+"&ac=del&did="+id;
-			document.frm_gCF_display.submit();
-		}
-	}	
-	
-	function _multipledelete(pagenum)
-	{
-		if(confirm("Do you want to delete all the selected record(s)?"))
-		{
-			document.frm_gCF_display.action="options-general.php?page=simple-contact-form&pagenum="+pagenum;
-			document.frm_gCF_display.submit();
-		}
+		document.frm_gCF_display.action="options-general.php?page=simple-contact-form&pagenum="+pagenum+"&ac=del&did="+id;
+		document.frm_gCF_display.submit();
 	}
+}	
+
+function _multipledelete(pagenum)
+{
+	if(confirm("Do you want to delete all the selected record(s)?"))
+	{
+		document.frm_gCF_display.action="options-general.php?page=simple-contact-form&pagenum="+pagenum;
+		document.frm_gCF_display.submit();
+	}
+}
 </script>
 <div class="wrap">
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
-    <h2>Simple contact form</h2>
+    <h2><?php _e('Simple contact form', 'simple-contact-form'); ?></h2>
     <div class="tool-box">
 	<div style="height:5px;"></div>
 	<?php
@@ -111,21 +110,21 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 		<thead>
 		  <tr>
 			<th class="check-column" scope="col"><input type="checkbox" /></th>
-			<th scope="col">Name</th>
-			<th scope="col">Email</th>
-			<th scope="col">Message</th>
-			<th scope="col">Date</th>
-			<th scope="col">IP</th>
+			<th scope="col"><?php _e('Name', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('Email', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('Message', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('Date', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('IP', 'simple-contact-form'); ?></th>
 		  </tr>
 		</thead>
 		<tfoot>
 		  <tr>
 			<th class="check-column" scope="col"><input type="checkbox" /></th>
-			<th scope="col">Name</th>
-			<th scope="col">Email</th>
-			<th scope="col">Message</th>
-			<th scope="col">Date</th>
-			<th scope="col">IP</th>
+			<th scope="col"><?php _e('Name', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('Email', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('Message', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('Date', 'simple-contact-form'); ?></th>
+			<th scope="col"><?php _e('IP', 'simple-contact-form'); ?></th>
 		  </tr>
 		</tfoot>
 		<tbody>
@@ -140,7 +139,7 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 						<td align="left"><input name="chk_delete[]" id="chk_delete[]" type="checkbox" value="<?php echo $data['gCF_id']; ?>"></td>
 						<td><?php echo $data['gCF_name']; ?>
 						<div class="row-actions">
-							<span class="trash"><a onClick="javascript:_gCF_delete('<?php echo $data['gCF_id']; ?>', <?php echo $pagenum; ?>)" href="javascript:void(0);">Delete</a></span> 
+							<span class="trash"><a onClick="javascript:_gCF_delete('<?php echo $data['gCF_id']; ?>', <?php echo $pagenum; ?>)" href="javascript:void(0);"><?php _e('Delete', 'simple-contact-form'); ?></a></span> 
 						</div>
 						</td>
 						<td><?php echo $data['gCF_email']; ?></td>
@@ -154,7 +153,7 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 			}
 			else
 			{
-				?><tr><td colspan="6" align="center">No records available.</td></tr><?php 
+				?><tr><td colspan="6" align="center"><?php _e('No records available.', 'simple-contact-form'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>
@@ -174,18 +173,20 @@ if (isset($_POST['frm_gCF_display']) && $_POST['frm_gCF_display'] == 'yes')
 		?>	
 	<div class="tablenav bottom">
 	  <div class="alignleft actions">
-	    <input class="button"  name="multidelete" type="button" id="multidelete" value="Delete all selected records" onclick="_multipledelete(<?php echo $pagenum; ?>)"> &nbsp; 
-	  	<a class="button" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=simple-contact-form&amp;ac=set">Go to Setting Management</a> &nbsp; 
-		<a class="button" target="_blank" href="http://www.gopiplus.com/work/2010/07/18/simple-contact-form/">Help</a>
+	    <input class="button"  name="multidelete" type="button" id="multidelete" value="<?php _e('Delete all selected records', 'simple-contact-form'); ?>" onclick="_multipledelete(<?php echo $pagenum; ?>)"> &nbsp; 
+	  	<a class="button" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=simple-contact-form&amp;ac=set"><?php _e('Setting', 'simple-contact-form'); ?></a> &nbsp; 
+		<a class="button" target="_blank" href="http://www.gopiplus.com/work/2010/07/18/simple-contact-form/"><?php _e('Help', 'simple-contact-form'); ?></a>
 	  </div>
 	  <div class="tablenav-pages"><span class="pagination-links"><?php echo $page_links; ?></span></div>
 	</div>
 	</form>
-	<h3>Plugin configuration option</h3>
+	<h3><?php _e('Plugin configuration option', 'simple-contact-form'); ?></h3>
 	<ol>
-		<li>Add directly in to the theme using PHP code.</li>
-		<li>Drag and drop the widget to your sidebar.</li>
+		<li><?php _e('Add directly in to the theme using PHP code.', 'simple-contact-form'); ?></li>
+		<li><?php _e('Drag and drop the widget to your sidebar.', 'simple-contact-form'); ?></li>
 	</ol>
-	<p class="description">This plugin has been integrated with Email Newsletter plugin. Please use Email Newsletter plugin to send Newsletters to above listed emails. <br />Check official website for more information <a target="_blank" href="http://www.gopiplus.com/work/2010/07/18/simple-contact-form/">click here</a></p>
+	<p class="description"><?php _e('This plugin has been integrated with Email Newsletter plugin. Please use Email Newsletter plugin to send Newsletters to above listed emails.', 'simple-contact-form'); ?>
+	<br /><?php _e('Check official website for more information', 'simple-contact-form'); ?>
+	<a target="_blank" href="http://www.gopiplus.com/work/2010/07/18/simple-contact-form/"><?php _e('click here', 'simple-contact-form'); ?></a></p>
 	</div>
 </div>
