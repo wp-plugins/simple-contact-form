@@ -1,5 +1,5 @@
 === Simple contact form ===
-Contributors: dabelon
+Contributors: www.gopiplus.com, gopiplus
 Tags: contact form, simple contact form
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
