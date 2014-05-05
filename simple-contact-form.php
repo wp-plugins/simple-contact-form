@@ -1,15 +1,17 @@
 <?php
 /*
 Plugin Name: Simple contact form
-Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
+Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry. To place widget click <a href="widgets.php">here</a>.
 Author: Gopi.R
-Version: 11.2
+Version: 12.0
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+global $wpdb, $wp_version;
+define("WP_scontact_TABLE_APP", $wpdb->prefix . "scontact_newsletter_app");
 
 function gCF()
 {
@@ -45,8 +47,13 @@ function gCF()
 		  	<img src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/captcha.php?width=100&height=30&characters=5" />
 		  </div>
 		  <div class="gcf_title">
-			<input type="button" name="button" value="Submit" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/');">
+			<input type="button" name="button" value="Submit" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/','<?php echo eemail_my_app_id(); ?>');">
 		  </div>
+		  <?php 
+		  if(eemail_has_app()){?>
+		  <p style="max-width:180px;font-size: 10px;margin-bottom:10px;margin-left:10px;">By signing up, you agree to our <a href="http://www.readygraph.com/tos">Terms of Service</a> and <a href='http://readygraph.com/privacy/'>Privacy Policy</a>.</p>
+		  <?php } ?>
+
           <div class="gcf_title"></div>
 		</form>
 		<?php
@@ -59,6 +66,15 @@ function gCF_install()
 	$gCF_table = $wpdb->prefix . "gCF";
 	add_option('gCF_table', $gCF_table);
 	
+	if(strtoupper($wpdb->get_var("show tables like '". WP_scontact_TABLE_APP . "'")) != strtoupper(WP_scontact_TABLE_APP))  
+    {
+        $wpdb->query("
+            CREATE TABLE `". WP_scontact_TABLE_APP . "` (
+                `eemail_app_pk` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+                `eemail_app_id` VARCHAR( 250 ) NOT NULL )
+            ");
+    }
+
 	if($wpdb->get_var("show tables like '". $gCF_table . "'") != $gCF_table) 
 	{
 		$wpdb->query("
@@ -73,8 +89,9 @@ function gCF_install()
 			");
 	}
 	
-	add_option('gCF_title', "Contact Us");
+	add_option('gCF_title', "Sign up to join the community");
 	add_option('gCF_fromemail', "admin@contactform.com");
+	add_option('my_plugin_do_activation_redirect', true);  
 	add_option('gCF_On_Homepage', "YES");
 	add_option('gCF_On_Posts', "YES");
 	add_option('gCF_On_Pages', "YES");
@@ -151,12 +168,49 @@ function gCF_admin()
 	}
 }
 
+
+function eemail_has_app(){
+    global $wpdb;
+    $cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
+    $data = $wpdb->get_results($cSql);
+
+    if(count($data) > 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function eemail_my_app_id(){
+    global $wpdb;
+    $cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
+    $data = $wpdb->get_results($cSql,ARRAY_A);
+    
+
+    if(count($data) > 0){
+        $app_id = $data[0]['eemail_app_id'];
+        return $app_id;
+    }
+    else{
+        return false;
+    }
+}
+
+function add_app_register_page(){
+    global $wpdb;
+    include_once('pages/app_page.php');
+}
+
+
 function gCF_add_to_menu() 
 {
+
+	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'add_app_register_page' );
+	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', 'register-app', 'add_app_register_page');
 	if (is_admin()) 
 	{
-		add_options_page( __('Simple contact form', 'simple-contact-form'), 
-				__('Simple contact form', 'simple-contact-form'), 'manage_options', 'simple-contact-form', 'gCF_admin' );
+	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
 	}
 }
 
@@ -173,10 +227,18 @@ function gCF_textdomain()
 {
 	  load_plugin_textdomain( 'simple-contact-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
+function on_plugin_activated_redirect(){
+    $setting_url="admin.php?page=register-app";    
+    if (get_option('my_plugin_do_activation_redirect', false)) {  
+        delete_option('my_plugin_do_activation_redirect'); 
+        wp_redirect(admin_url($setting_url)); 
+    }  
+}
 
 add_action('plugins_loaded', 'gCF_textdomain');
 add_action('admin_menu', 'gCF_add_to_menu');
 add_action('wp_enqueue_scripts', 'gCF_add_javascript_files');
+add_action('admin_init', 'on_plugin_activated_redirect');  
 add_action("plugins_loaded", "gCF_widget_init");
 register_activation_hook(__FILE__, 'gCF_install');
 register_deactivation_hook(__FILE__, 'gCF_deactivation');
