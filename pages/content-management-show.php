@@ -73,7 +73,7 @@ function _gCF_delete(id, pagenum)
 {
 	if(confirm("Do you want to delete this record?"))
 	{
-		document.frm_gCF_display.action="options-general.php?page=simple-contact-form&pagenum="+pagenum+"&ac=del&did="+id;
+		document.frm_gCF_display.action="admin.php?page=settings&pagenum="+pagenum+"&ac=del&did="+id;
 		document.frm_gCF_display.submit();
 	}
 }	
@@ -82,7 +82,7 @@ function _multipledelete(pagenum)
 {
 	if(confirm("Do you want to delete all the selected record(s)?"))
 	{
-		document.frm_gCF_display.action="options-general.php?page=simple-contact-form&pagenum="+pagenum;
+		document.frm_gCF_display.action="admin.php?page=settings&pagenum="+pagenum;
 		document.frm_gCF_display.submit();
 	}
 }
@@ -174,7 +174,7 @@ function _multipledelete(pagenum)
 	<div class="tablenav bottom">
 	  <div class="alignleft actions">
 	    <input class="button"  name="multidelete" type="button" id="multidelete" value="<?php _e('Delete all selected records', 'simple-contact-form'); ?>" onclick="_multipledelete(<?php echo $pagenum; ?>)"> &nbsp; 
-	  	<a class="button" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=simple-contact-form&amp;ac=set"><?php _e('Setting', 'simple-contact-form'); ?></a> &nbsp; 
+	  	<a class="button" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=settings&amp;ac=set"><?php _e('Setting', 'simple-contact-form'); ?></a> &nbsp; 
 		<a class="button" target="_blank" href="http://www.gopiplus.com/work/2010/07/18/simple-contact-form/"><?php _e('Help', 'simple-contact-form'); ?></a>
 	  </div>
 	  <div class="tablenav-pages"><span class="pagination-links"><?php echo $page_links; ?></span></div>

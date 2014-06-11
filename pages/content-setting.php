@@ -13,6 +13,7 @@
 	$gCF_On_SendEmail = get_option('gCF_On_SendEmail');
 	$gCF_On_MyEmail = get_option('gCF_On_MyEmail');
 	$gCF_On_Subject = get_option('gCF_On_Subject');
+//	$gCF_On_App_Key = get_option('gCF_ReadyGraph_API');
 	
 	if (isset($_POST['gCF_form_submit']) && $_POST['gCF_form_submit'] == 'yes')
 	{
@@ -28,6 +29,7 @@
 		$gCF_On_SendEmail = stripslashes($_POST['gCF_On_SendEmail']);
 		$gCF_On_MyEmail = stripslashes($_POST['gCF_On_MyEmail']);
 		$gCF_On_Subject = stripslashes($_POST['gCF_On_Subject']);
+		$gCF_On_App_Key = stripslashes($_POST['gCF_On_App_Key']);
 		
 		update_option('gCF_title', $gCF_title );
 		update_option('gCF_On_Homepage', $gCF_On_Homepage );
@@ -38,7 +40,7 @@
 		update_option('gCF_On_SendEmail', $gCF_On_SendEmail );
 		update_option('gCF_On_MyEmail', $gCF_On_MyEmail );
 		update_option('gCF_On_Subject', $gCF_On_Subject );
-		
+		update_option('gCF_ReadyGraph_API', $gCF_On_App_Key );		
 		?>
 		<div class="updated fade">
 			<p><strong><?php _e('Details successfully updated.', 'simple-contact-form'); ?></strong></p>
@@ -92,6 +94,11 @@
 		<label for="tag-width"><?php _e('Email subject', 'simple-contact-form'); ?></label>
 		<input name="gCF_On_Subject" type="text" value="<?php echo $gCF_On_Subject; ?>"  id="gCF_On_Subject" size="50" maxlength="150">
 		<p><?php _e('Please enter admin email subject.', 'simple-contact-form'); ?></p>
+
+<!--		<label for="tag-width"><?php //_e('ReadyGraph API', 'simple-contact-form'); ?></label>
+		<input name="gCF_On_App_Key" type="text" value="<?php //echo $gCF_On_App_Key; ?>"  id="gCF_On_App_Key" size="50" maxlength="150">
+		<p><?php //_e('Please enter ReadyGraph API detail.', 'simple-contact-form'); ?></p>
+-->
 		
 		<input type="hidden" name="gCF_form_submit" value="yes"/>
 		<p class="submit">
