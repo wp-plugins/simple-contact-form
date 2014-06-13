@@ -1,16 +1,16 @@
 === Simple contact form ===
-Contributors: www.gopiplus.com, gopiplus
+Contributors: Dabelon, wenzhixue, tanaylakhani, www.gopiplus.com, gopiplus
 Tags: contact form, simple contact form
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 3.8
-Stable tag: 13.0
+Stable tag: 14.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar.
+Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. Automate user growth through ReadyGraph integration.
 
 == Description ==
 
@@ -22,7 +22,15 @@ Check official website for live demo [http://www.gopiplus.com/work/2010/07/18/si
 *   [Suggenstion/comments](http://www.gopiplus.com/work/2010/07/18/simple-contact-form//)   
 
 Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry. And we have option to stop sending emails to admin. This plug-in generates images (known as "Captcha's") which contain security codes used for protecting a form from spam.
- 
+
+This plugin has integrated [ReadyGraph](http://readygraph.com/), an optional set of features to automate the growth of your userbase.  It helps you achieve the three goals of any web marketer: maximize conversion of site visitors to register for your email list, maximize viral referrals for your site, and maximize return visits to your site.  To accomplish this, we have integrated a key set of growth features with this plugin:
+	- Intelligent signup popup with email or one-click Facebook login
+	- Full viral referral flow
+	- Automated end user re-engagement emails including welcome emails, weekly digest, friend joined alert and more (all email campaigns are optional and configurable)
+	- Enhanced email deliverabilty
+	- Cloud-based analytics and data storage
+	- Settings that allow you to turn on and off all ReadyGraph features.
+	
 **Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)**
 
 1. Simple.  
@@ -35,6 +43,31 @@ Simple contact form plug-in provides a simple Ajax based contact form on your wo
 7. Send email to admin option available (This is optional, admin can set on/off for email).
 8. Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+
+= ReadyGraph App =
+
+ReadyGraph is a system that automates the growth of your site’s userbase. It is optimized to deliver audience growth and motivate users to consistently revisit your site.
+
+= Optimized Signup Form =
+
+ReadyGraph’s signup form with intelligent pop-up functionality and one-click login is designed to maximize signups to your email list.  You can configure when the popup appears so as to maximize the likelihood that the user is engaged enough to register for your list.
+
+= Viral Friend Invites =
+
+ReadyGraph adds a friend invite process to your site’s signup flow.  We then power the entire viral loop by sending email and Facebook invitations that encourage your visitors’ friends to signup for your site.
+
+= Automated Re-engagement Emails =
+
+ReadyGraph’s automated email system encourages visitors to return to your site.   Users receive optimized emails such as a welcome email, re-engagement email, regular digest with new content from your blog, and social emails.  All emails are configurable including the ability to turn on and off individual campaigns.  We handle all sending to maximize deliverability.
+
+= Analytics =
+
+Track daily-new subscribers, daily invites, total traffic, and other key metrics that quantify growth and user engagement.  ReadyGraph safely stores user data in the cloud so you can access data from anywhere.
+
+= Newsfeed =
+
+ReadyGraph’s newsfeed is an optional overlay on your site where your users can engage with others in your community and recommend your content or products to each other.  It is like having a social network that engages users embedded on your site. Users can leave comments, ‘like’ comments left by other subscribers and ‘follow’ other subscribers.  Subscribers will receive automated email updates based on these actions.
+
 
 **version 7.0**				
 Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
