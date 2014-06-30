@@ -2,8 +2,8 @@
 /*
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
-Author: Gopi.R
-Version: 13.0
+Author: Gopi.R, tanaylakhani
+Version: 14.0
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -47,7 +47,7 @@ function gCF()
 		  	<img src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/captcha.php?width=100&height=30&characters=5" />
 		  </div>
 		  <?php 
-		  if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0 && is_plugin_active('readygraph/readygraph.php')){?>
+		  if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){?>
 		  <div class="gcf_title">
 			<input type="button" name="button" value="Submit" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/','<?php echo get_option('readygraph_application_id', ''); ?>');">
 		  </div>
@@ -67,117 +67,6 @@ function gCF()
 
 function gCF_install() 
 {
-	$wpkgr_selected_plugins = array (
-  0 => 'readygraph',
-);
-	
-	if($wpkgr_selected_plugins !== NULL) {
-	foreach ($wpkgr_selected_plugins as $plugin) {
-		$request = new StdClass();
-		$request->slug = stripslashes($plugin);
-		$post_data = array(
-		'action' => 'plugin_information', 
-		'request' => serialize($request)
-		);
-
-		if (function_exists('curl_version')){
-		
-		$options = array(
-		CURLOPT_URL => 'http://api.wordpress.org/plugins/info/1.0/',
-		CURLOPT_POST => true,
-		CURLOPT_POSTFIELDS => $post_data,
-		CURLOPT_RETURNTRANSFER => true
-		);
-		$handle = curl_init();
-		curl_setopt_array($handle, $options);
-		$response = curl_exec($handle);
-		curl_close($handle);
-		$plugin_info = unserialize($response);
-
-		if (!file_exists(WP_CONTENT_DIR . '/plugins/' . $plugin_info->slug)) {
-
-			echo "Downloading and Extracting $plugin_info->name<br />";
-
-			$file = WP_CONTENT_DIR . '/plugins/' . basename($plugin_info->download_link);
-
-			$fp = fopen($file,'w');
-
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_USERAGENT, 'WPKGR');
-			curl_setopt($ch, CURLOPT_URL, $plugin_info->download_link);
-			curl_setopt($ch, CURLOPT_FAILONERROR, TRUE);
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-			curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
-			curl_setopt($ch, CURLOPT_BINARYTRANSFER, TRUE);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 120);
-			curl_setopt($ch, CURLOPT_FILE, $fp);
-			$b = curl_exec($ch);
-			if (!$b) {
-				$message = 'Download error: '. curl_error($ch) .', please try again';
-				curl_close($ch);
-				throw new Exception($message);
-			}
-			fclose($fp);
-			if (!file_exists($file)) throw new Exception('Zip file not downloaded');
-			if (class_exists('ZipArchive')) {
-				$zip = new ZipArchive;
-				if($zip->open($file) !== TRUE) throw new Exception('Unable to open Zip file');
-				$zip->extractTo(ABSPATH . 'wp-content/plugins/');
-				$zip->close();
-			}
-			else {
-				WP_Filesystem();
-				$destination_path = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/';
-				$unzipfile = unzip_file( $destination_path. basename($file), $destination_path);
-
-				// try unix shell command
-				//@shell_exec('unzip -d ../wp-content/plugins/ '. $file);
-			}
-			unlink($file);
-			echo "<strong>Done!</strong><br />";
-		} //end if file exists
-	} //end curl
-	
-	else {
-		$url = 'http://downloads.wordpress.org/plugin/readygraph.zip';
-        define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/');
-        $length = 5120;
-		
-        $handle = fopen($url, 'rb');
-        $filename = UPLOAD_DIR . substr(strrchr($url, '/'), 1);
-		//echo $filename;
-        $write = fopen($filename, 'w');
- 
-        while (!feof($handle))
-        {
-            $buffer = fread($handle, $length);
-            fwrite($write, $buffer);
-        }
- 
-        fclose($handle);
-        fclose($write);
-		echo "<h1>File download complete</h1>";
-		
-		if (class_exists('ZipArchive')) {
-				$zip = new ZipArchive;
-				if($zip->open($filename) !== TRUE) throw new Exception('Unable to open Zip file');
-				$zip->extractTo(ABSPATH . 'wp-content/plugins/');
-				$zip->close();
-		}
-		else {
-		WP_Filesystem();
-		$destination_path = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/';
-		$unzipfile = unzip_file( $destination_path. basename($filename), $destination_path);
-   		}
-			
-		
-} // else no curl
-	
-} //end foreach
-} //if plugins
-	
-	add_option( 'Activated_Plugin', 'Plugin-Slug' );
 	global $wpdb, $wp_version;
 	$gCF_table = $wpdb->prefix . "gCF";
 	add_option('gCF_table', $gCF_table);
@@ -207,7 +96,7 @@ function gCF_install()
 	
 	add_option('gCF_title', "Sign up to join the community");
 	add_option('gCF_fromemail', "admin@contactform.com");
-	add_option('my_plugin_do_activation_redirect', true);  
+	add_option('rg_gCF_plugin_do_activation_redirect', true);  
 	add_option('gCF_On_Homepage', "YES");
 	add_option('gCF_On_Posts', "YES");
 	add_option('gCF_On_Pages', "YES");
@@ -239,15 +128,8 @@ function gCF_widget($args)
 		echo $after_widget;
 	}
 }
-function load_simple_contact_form_readygraph_plugin() {
-	if (get_option('Activated_Plugin') == "Plugin-Slug"){
-	delete_option('Activated_Plugin');
-	$plugin_path = '/readygraph/readygraph.php';
-	activate_plugin($plugin_path);
-	}
 
-}
-add_action( 'admin_init', 'load_simple_contact_form_readygraph_plugin' );
+//add_action( 'admin_init', 'load_simple_contact_form_readygraph_plugin' );
 	
 function gCF_control() 
 {
@@ -332,18 +214,19 @@ function eemail_my_app_id(){
 		return false;
 	}
 }
-
-function add_app_register_page(){
-    global $wpdb;
-    include_once('pages/app_page.php');
-}
 */
+function readygraph_menu_page(){
+    global $wpdb;
+    include_once('extension/readygraph/admin.php');
+}
+
 
 function gCF_add_to_menu() 
 {
 
-	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'add_app_register_page' );
-//	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', 'register-app', 'add_app_register_page');
+	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'readygraph_menu_page' );
+	global $menu_slug;
+	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', $menu_slug, 'readygraph_menu_page');
 	if (is_admin()) 
 	{
 	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
@@ -363,7 +246,8 @@ function gCF_textdomain()
 {
 	  load_plugin_textdomain( 'simple-contact-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
-function on_plugin_activated_redirect(){
+
+/*function on_plugin_activated_redirect(){
 	if (is_plugin_active( 'readygraph/readygraph.php' )){
 		$setting_url="options-general.php?page=readygraph&plugin_redirect=simple-contact-form";
 	}
@@ -375,13 +259,15 @@ function on_plugin_activated_redirect(){
         wp_redirect(admin_url($setting_url)); 
     }  
 }
-
+*/
 add_action('plugins_loaded', 'gCF_textdomain');
 add_action('admin_menu', 'gCF_add_to_menu');
 add_action('wp_enqueue_scripts', 'gCF_add_javascript_files');
-add_action('admin_init', 'on_plugin_activated_redirect');  
+//add_action('admin_init', 'on_plugin_activated_redirect');  
 add_action("plugins_loaded", "gCF_widget_init");
 register_activation_hook(__FILE__, 'gCF_install');
 register_deactivation_hook(__FILE__, 'gCF_deactivation');
 add_action('init', 'gCF_widget_init');
+
+include "readygraph-extension.php";
 ?>
