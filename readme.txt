@@ -68,6 +68,8 @@ Track daily-new subscribers, daily invites, total traffic, and other key metrics
 
 ReadyGraph’s newsfeed is an optional overlay on your site where your users can engage with others in your community and recommend your content or products to each other.  It is like having a social network that engages users embedded on your site. Users can leave comments, ‘like’ comments left by other subscribers and ‘follow’ other subscribers.  Subscribers will receive automated email updates based on these actions.
 
+If you have questions or concerns contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
+
 **version 14.0**	
 
 Now this plugin is integrated with Readygraph Growth Engine. It means all the features at [ReadyGraph](http://readygraph.com/) can be accessed from wordpress plugin, more customization options are on its way..
@@ -129,6 +131,8 @@ Q4. Is this send any mail to site admin?
 Q5. How To change the captcha color scheme?
 
 [View answer for all above question](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)  
+
+If you have questions or concerns contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
 
 == Screenshots ==
 
