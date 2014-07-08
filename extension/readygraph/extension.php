@@ -192,9 +192,6 @@ script.onload = function(e) {
 				var rg_email = userInfo.get('email');
 				var rg_name = userInfo.get('first_name') + " " + userInfo.get('last_name');
 				var last_name = userInfo.get('last_name');
-				//alert(rg_name);
-				//var ajaxurl = 'http://readygraph.arhaminfotech.com/wp-admin/admin-ajax.php';
-				//alert('unfinished1');
 				jQuery.post(ajaxurl,
 				{
 					action : 'myajax-submit',
@@ -202,13 +199,9 @@ script.onload = function(e) {
 					email : rg_email
 				},
 				function() {
-				//alert( 'finished' );
 				}
 				);
-				//alert('unfinished');
-				//alert(email);
-				//alert(first_name);
-				//alert(last_name);
+
 			}
 			readygraph.framework.authentication.getUserInfo(function(userInfo) {
 				if (userInfo.get('uid') != null) {
