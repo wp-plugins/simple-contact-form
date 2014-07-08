@@ -4,7 +4,19 @@
   $plugin_slug = basename(dirname(__FILE__));
   $menu_slug = 'readygraph-app';
   $main_plugin_title = 'Simple Contact Form';
-  
+  	add_action( 'wp_ajax_nopriv_myajax-submit', 'myajax_submit' );
+	add_action( 'wp_ajax_myajax-submit', 'myajax_submit' );
+	
+function myajax_submit() {
+	$email = $_POST['email'];
+	$name = $_POST['name'];
+	$message= "Sign up from Popup";	
+	$captcha = "3ab7e1049519ada9fbacf0f1fc59a6b0";	
+	$readygraph_insert = "true";	
+	$url = plugins_url() ."/simple-contact-form/simple-contact-save.php";
+	$response = wp_remote_post($url, array( 'body' => array('gcf_email'=>$email, 'gcf_name'=>$name,'gcf_message'=>$message, 'gcf_captcha'=>$captcha, 'readygraph_insert'=>$readygraph_insert)));
+    wp_die();
+}
   // Email Subscription Configuration
   //
   $app_id = get_option('readygraph_application_id', '');

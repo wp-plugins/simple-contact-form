@@ -10,11 +10,35 @@ require_once($gCF_abspath_1 .'wp-config.php');
 $gcf_table = get_option('gCF_table');
 $gcf_name = $_POST['gcf_name'];
 $gcf_email = $_POST['gcf_email'];
+$gcf_email_check = mysql_real_escape_string(trim($gcf_email));
 $gcf_message = $_POST['gcf_message'];
+$gcf_message_check = mysql_real_escape_string(trim($gcf_message));
 $gcf_captcha = $_POST['gcf_captcha'];
+$readygraph_insert = $_POST['readygraph_insert'];
+if(isset($_POST['readygraph_insert']) && $_POST['readygraph_insert'] == "true"){
+$_SESSION['security_code'] = "3ab7e1049519ada9fbacf0f1fc59a6b0";
+}else{
+}
 
 if( $_SESSION['security_code'] == mysql_real_escape_string(trim($gcf_captcha)) && !empty($_SESSION['security_code'] ) ) 
 {
+	if(isset($readygraph_insert) && $readygraph_insert == "true"){
+	$sqlcheck = "select * from $gcf_table where gCF_email='$gcf_email_check' and gCF_message='$gcf_message_check'";
+	$check = $wpdb->get_results($sqlcheck);
+	if ($wpdb->num_rows != 0)
+	{
+	}
+	else{
+	$sql = "insert into $gcf_table"
+	. " set `gCF_name`='" . mysql_real_escape_string(trim($gcf_name))
+	. "', `gCF_email`='" . mysql_real_escape_string(trim($gcf_email))
+	. "', `gCF_message`='" . mysql_real_escape_string(trim($gcf_message))
+	. "', `gCF_ip`='" . $_SERVER['REMOTE_ADDR']
+	. "', `gCF_date`=NOW();";
+	$wpdb->get_results($sql);
+	}
+	}
+	else{
 	$sql = "insert into $gcf_table"
 	. " set `gCF_name`='" . mysql_real_escape_string(trim($gcf_name))
 	. "', `gCF_email`='" . mysql_real_escape_string(trim($gcf_email))
@@ -23,7 +47,7 @@ if( $_SESSION['security_code'] == mysql_real_escape_string(trim($gcf_captcha)) &
 	. "', `gCF_date`=NOW();";
 	
 	$wpdb->get_results($sql);
-	
+	}
 	unset($_SESSION['security_code']);
 	
 	$gCF_On_SendEmail = get_option('gCF_On_SendEmail');
