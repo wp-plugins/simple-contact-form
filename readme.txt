@@ -140,12 +140,11 @@ Q5. How To change the captcha color scheme?
 
 = ReadyGraph FAQ =
 
-
-**GENERAL QUESTIONS:**
+= GENERAL QUESTIONS: =
 
 **What is ReadyGraph?**
 
-ReadyGraph is a tool that makes it easy for websites to grow and manage their user-base, by allowing/utilizing: user sign-up, through an optional notification tab and an intelligent pop-up, with one-click sign-up and social login options; user friend invitations, through the sign-up pop-up, or a sidebar button; automated emails (optional) that keep visitors coming back, such as welcome messages to greet new users, recent site updates/posts to keep them informed, gentle reminders for inactive users, and a weekly digest of new content; mass emailing, for fast communication to all your subscribers; user-interaction, through an optional comment-feed sidebar; analytic tools, to track new subscribers, daily visits, and other key metrics that quantify your website’s growth and user engagement.
+ReadyGraph is a tool that makes it easy for websites to grow and manage their user-base, by allowing/utilizing: **user sign-up**, through an optional notification tab and an intelligent pop-up, with one-click sign-up and social login options; **user friend invitations**, through the sign-up pop-up, or a sidebar button; **automated emails** (optional) that keep visitors coming back, such as welcome messages to greet new users, recent site updates/posts to keep them informed, gentle reminders for inactive users, and a weekly digest of new content; **mass emailing**, for fast communication to all your subscribers; **user-interaction**, through an optional comment-feed sidebar; **analytic tools**, to track new subscribers, daily visits, and other key metrics that quantify your website’s growth and user engagement.
 
 **How do I install ReadyGraph?**
 
@@ -175,7 +174,7 @@ You can contact us at info@readygraph.com. We appreciate all feedback.
 
 Yes, just navigate to the “Developers” tab on the wordpress.org plug-in page, and select the version that works for you.
 
-**ACCOUNT QUESTIONS:**
+= ACCOUNT QUESTIONS: =
 
 **How do I change my account email address?**
 
@@ -189,7 +188,7 @@ You can turn them off via the account settings page on ReadyGraph.com.
 
 You can disconnect ReadyGraph from your site by navigating to the upper-right corner of the “ReadyGraph App” page in this plug-in, and clicking the drop-down menu with your email address on it; there will be an option there to disconnect ReadyGraph from your site.
 
-**CUSTOMIZATION QUESTIONS:**
+= CUSTOMIZATION QUESTIONS: =
 
 **Can I customize the pop-up?**
 
@@ -203,7 +202,7 @@ You can customize the text on the friend invite form to something that suits you
 
 Yes, on the right side of the “ReadyGraph App” page, you will find a link to a page where you can Configure/Enable/Disable the various automated emails that you can send via ReadyGraph.
 
-**QUESTIONS ABOUT YOUR SUBSCRIBERS:**
+= QUESTIONS ABOUT YOUR SUBSCRIBERS: =
 
 **How do I view my subscribers?**
 
@@ -216,7 +215,6 @@ On the right side of the “ReadyGraph App” page, you will find a link to a pa
 **Can I import a list of existing subscribers?**
 
 This is a feature currently under development and is scheduled to be released in our next update.
-
 
 **Can I export a list of my subscribers?**
 
