@@ -177,7 +177,7 @@ You can turn them off via the account settings page on ReadyGraph.com.
 **How do I disconnect ReadyGraph from my site?**
 You can disconnect ReadyGraph from your site by navigating to the upper-right corner of the “ReadyGraph App” page in this plug-in, and clicking the drop-down menu with your email address on it; there will be an option there to disconnect ReadyGraph from your site.
 
-** CUSTOMIZATION QUESTIONS: **
+**CUSTOMIZATION QUESTIONS:**
 
 **Can I customize the pop-up?**
 Yes, you can choose a template that matches your site design, from the various templates available.
