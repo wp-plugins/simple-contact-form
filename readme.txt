@@ -180,12 +180,15 @@ You can disconnect ReadyGraph from your site by navigating to the upper-right co
 **CUSTOMIZATION QUESTIONS:**
 
 **Can I customize the pop-up?**
+
 Yes, you can choose a template that matches your site design, from the various templates available.
 
 **Can I customize the friend-invite form?**
+
 You can customize the text on the friend invite form to something that suits your website.
 
 **Can I customize my emails?**
+
 Yes, on the right side of the “ReadyGraph App” page, you will find a link to a page where you can Configure/Enable/Disable the various automated emails that you can send via ReadyGraph.
 
 ** QUESTIONS ABOUT YOUR SUBSCRIBERS: **
