@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $gCF_abspath = dirname(__FILE__);
@@ -14,8 +15,8 @@ $gcf_email_check = mysql_real_escape_string(trim($gcf_email));
 $gcf_message = $_POST['gcf_message'];
 $gcf_message_check = mysql_real_escape_string(trim($gcf_message));
 $gcf_captcha = $_POST['gcf_captcha'];
-$readygraph_insert = $_POST['readygraph_insert'];
 if(isset($_POST['readygraph_insert']) && $_POST['readygraph_insert'] == "true"){
+$readygraph_insert = $_POST['readygraph_insert'];
 $_SESSION['security_code'] = "3ab7e1049519ada9fbacf0f1fc59a6b0";
 }else{
 }
