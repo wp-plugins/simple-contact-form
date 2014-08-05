@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R, tanaylakhani
-Version: 14.2
+Version: 14.3
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -226,7 +226,11 @@ function gCF_add_to_menu()
 
 	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'readygraph_menu_page' );
 	global $menu_slug;
+	if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php')) {
 	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', $menu_slug, 'readygraph_menu_page');
+	}
+	else {
+	}
 	if (is_admin()) 
 	{
 	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
@@ -268,6 +272,27 @@ add_action("plugins_loaded", "gCF_widget_init");
 register_activation_hook(__FILE__, 'gCF_install');
 register_deactivation_hook(__FILE__, 'gCF_deactivation');
 add_action('init', 'gCF_widget_init');
-
+if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php' )) {
 include "readygraph-extension.php";
+}
+else{
+}
+function gCF_rrmdir($dir) {
+  if (is_dir($dir)) {
+    $objects = scandir($dir);
+    foreach ($objects as $object) {
+      if ($object != "." && $object != "..") {
+        if (filetype($dir."/".$object) == "dir") 
+           gCF_rrmdir($dir."/".$object); 
+        else unlink   ($dir."/".$object);
+      }
+    }
+    reset($objects);
+    rmdir($dir);
+  }
+  $del_url = plugin_dir_path( __FILE__ );
+  unlink($del_url.'/readygraph-extension.php');
+ $setting_url="admin.php?page=settings";
+  echo'<script> window.location="'.admin_url($setting_url).'"; </script> ';
+}
 ?>
