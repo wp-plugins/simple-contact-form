@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R, tanaylakhani
-Version: 14.3
+Version: 14.4
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -176,48 +176,46 @@ function gCF_admin()
 	}
 }
 
-/*
-function eemail_has_app(){
-    //global $wpdb;
-    //$cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
-	$app_key = get_option('gCF_ReadyGraph_API');
-    //$data = $wpdb->get_results($cSql);
-
-    if(strlen($app_key)>0 && $app_key <> "include your api_key"){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-function eemail_my_app_id(){
-    global $wpdb;
-    $cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
-    $data = $wpdb->get_results($cSql,ARRAY_A);
-    
-
-    if(count($data) > 0){
-        $app_id = $data[0]['eemail_app_id'];
-        return $app_id;
-    }
-    else{
-        return false;
-    }
-
-	$app_key = get_option('gCF_ReadyGraph_API');
-	if(strlen($app_key)>0 && $app_key <> "include your api_key"){
-		$app_id = $app_key;
-		return $app_id;
-	}
-	else{
-		return false;
-	}
-}
-*/
 function readygraph_menu_page(){
-    global $wpdb;
-    include_once('extension/readygraph/admin.php');
+	global $wpdb;
+	$current_page = isset($_GET['ac']) ? $_GET['ac'] : '';
+	switch($current_page)
+	{
+		case 'signup-popup':
+			include('extension/readygraph/signup-popup.php');
+			break;
+		case 'invite-screen':
+			include('extension/readygraph/invite-screen.php');
+			break;
+		case 'social-feed':
+			include('extension/readygraph/social-feed.php');
+			break;
+		case 'site-profile':
+			include('extension/readygraph/site-profile.php');
+			break;
+		case 'customize-emails':
+			include('extension/readygraph/customize-emails.php');
+			break;
+		case 'deactivate-readygraph':
+			include('extension/readygraph/deactivate-readygraph.php');
+			break;
+		case 'welcome-email':
+			include('extension/readygraph/welcome-email.php');
+			break;
+		case 'retention-email':
+			include('extension/readygraph/retention-email.php');
+			break;
+		case 'invitation-email':
+			include('extension/readygraph/invitation-email.php');
+			break;	
+		case 'faq':
+			include('extension/readygraph/faq.php');
+			break;
+		default:
+			include('extension/readygraph/admin.php');
+			break;
+	}
+
 }
 
 
@@ -294,5 +292,20 @@ function gCF_rrmdir($dir) {
   unlink($del_url.'/readygraph-extension.php');
  $setting_url="admin.php?page=settings";
   echo'<script> window.location="'.admin_url($setting_url).'"; </script> ';
+}
+function gCF_delete_rg_options() {
+delete_option('readygraph_access_token');
+delete_option('readygraph_application_id');
+delete_option('readygraph_refresh_token');
+delete_option('readygraph_email');
+delete_option('readygraph_settings');
+delete_option('readygraph_delay');
+delete_option('readygraph_enable_sidebar');
+delete_option('readygraph_auto_select_all');
+delete_option('readygraph_enable_notification');
+delete_option('readygraph_enable_branding');
+delete_option('readygraph_send_blog_updates');
+delete_option('readygraph_send_real_time_post_updates');
+delete_option('readygraph_popup_template');
 }
 ?>

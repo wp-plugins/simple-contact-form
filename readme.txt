@@ -6,7 +6,7 @@ Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 3.8
-Stable tag: 14.3
+Stable tag: 14.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,13 @@ Track daily-new subscribers, daily invites, total traffic, and other key metrics
 ReadyGraph’s newsfeed is an optional overlay on your site where your users can engage with others in your community and recommend your content or products to each other.  It is like having a social network that engages users embedded on your site. Users can leave comments, ‘like’ comments left by other subscribers and ‘follow’ other subscribers.  Subscribers will receive automated email updates based on these actions.
 
 If you have questions or concerns contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
+
+**version 14.4**
+
+* GUI change
+* Tutorial
+* FAQ included
+
 
 **version 14.1**	
 
@@ -244,6 +251,12 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Upgrade Notice ==
 
+= 14.4 =
+
+1. GUI change
+2. Tutorial
+3. FAQ included
+
 = 14.3 =
 
 1. Uninstall Readygraph Option
@@ -321,6 +334,12 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 14.4 =
+
+1. GUI change
+2. Tutorial
+3. FAQ included
 
 = 14.3 =
 
