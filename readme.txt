@@ -339,6 +339,10 @@ This is the first version.
 
 == Changelog ==
 
+= 14.5 =
+
+1. Bug Fix - disable popup
+
 = 14.4 =
 
 1. GUI change
