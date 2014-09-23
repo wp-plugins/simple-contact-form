@@ -34,9 +34,22 @@ gCF_rrmdir($dir);
 	echo '<script>window.location.replace("'.$current_url[0].'");</script>';
 	}
 	else {
-
+	if (isset($_POST["readygraph_access_token"])) update_option('readygraph_access_token', $_POST["readygraph_access_token"]);
+	if (isset($_POST["readygraph_refresh_token"])) update_option('readygraph_refresh_token', $_POST["readygraph_refresh_token"]);
+	if (isset($_POST["readygraph_email"])) update_option('readygraph_email', $_POST["readygraph_email"]);
+	if (isset($_POST["readygraph_application_id"])) update_option('readygraph_application_id', $_POST["readygraph_application_id"]);
+	if (isset($_POST["readygraph_settings"])) update_option('readygraph_settings', $_POST["readygraph_settings"]);
+	if (isset($_POST["retentionemaileditor"])) update_option('readygraph_invite_email', $_POST["retentionemaileditor"]);
 	}
-?>	
+	if (get_option('readygraph_enable_branding', '') == 'false') {
+	?>
+<style>
+/* FOR INLINE WIDGET */
+.rgw-text {
+    display: none !important;
+}
+</style>
+<?php } ?>	
 
 <link rel="stylesheet" type="text/css" href="<?php echo plugins_url( 'assets/css/admin.css', __FILE__ ) ?>">
 <script type="text/javascript" src="<?php echo plugins_url( 'assets/js/admin.js', __FILE__ ) ?>"></script>
@@ -45,6 +58,16 @@ gCF_rrmdir($dir);
 <input type="hidden" name="readygraph_refresh_token" value="<?php echo get_option('readygraph_refresh_token', '') ?>">
 <input type="hidden" name="readygraph_email" value="<?php echo get_option('readygraph_email', '') ?>">
 <input type="hidden" name="readygraph_application_id" value="<?php echo get_option('readygraph_application_id', '') ?>">
+<input type="hidden" name="readygraph_settings" value="<?php echo htmlentities(str_replace("\\\"", "\"", get_option('readygraph_settings', '{}'))) ?>">
+<input type="hidden" name="readygraph_delay" value="<?php echo get_option('readygraph_delay', '5000') ?>">
+<input type="hidden" name="readygraph_enable_sidebar" value="<?php echo get_option('readygraph_enable_sidebar', 'false') ?>">
+<input type="hidden" name="readygraph_enable_notification" value="<?php echo get_option('readygraph_enable_notification', 'true') ?>">
+<input type="hidden" name="readygraph_auto_select_all" value="<?php echo get_option('readygraph_auto_select_all', 'true') ?>">
+<input type="hidden" name="readygraph_enable_branding" value="<?php echo get_option('readygraph_enable_branding', 'false') ?>">
+<input type="hidden" name="readygraph_send_blog_updates" value="<?php echo get_option('readygraph_send_blog_updates', 'true') ?>">
+<input type="hidden" name="readygraph_send_real_time_post_updates" value="<?php echo get_option('readygraph_send_real_time_post_updates', 'false') ?>">
+<input type="hidden" name="readygraph_popup_template" value="<?php echo get_option('readygraph_popup_template', 'default-template') ?>">
+
 
 <div class="authenticate" style="display: none;">
 	    <div class="wrap1" style="min-height: 600px;">
@@ -122,7 +145,7 @@ If you have questions or concerns contact us anytime at <a href="mailto:info@rea
 	<div class="readygraph-nav-menu">
 	<ul><li>Grow Users
 	  <ul>
-		<li><a href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=signup-popup">Signup Popup</a></li>
+		<li><a href="<?php $current_url = explode("?", $_SERVER['REQUEST_URI']); echo $current_url[0];?>?page=readygraph-app&ac=signup-popup">Signup Popup</a></li>
 		<li><a href="https://readygraph.com/application/insights/" target="_blank">User Statistics</a></li>
 		<li><a href="#"></a></li>
 	  </ul>
@@ -137,7 +160,7 @@ If you have questions or concerns contact us anytime at <a href="mailto:info@rea
   <li>
     Engage Users
     <ul>
-		<li><a href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=social-feed">Social Feed</a></li>
+		<li><a href="<?php $current_url = explode("?", $_SERVER['REQUEST_URI']); echo $current_url[0];?>?page=readygraph-app&ac=social-feed">Social Feed</a></li>
 		<li><a href="#">Social Followers</a></li>
 		<li><a href="#">Feedback Survey</a></li>
     </ul>
@@ -145,7 +168,7 @@ If you have questions or concerns contact us anytime at <a href="mailto:info@rea
   <li>Basic Settings
     <ul>
 		<li><a href="#">Site Profile</a></li>
-		<li><a href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=feature-settings">Feature Settings</a></li>
+		<li><a href="<?php $current_url = explode("?", $_SERVER['REQUEST_URI']); echo $current_url[0];?>?page=readygraph-app&ac=feature-settings">Feature Settings</a></li>
 	</ul>
   </li>
 </ul>
@@ -154,111 +177,42 @@ If you have questions or concerns contact us anytime at <a href="mailto:info@rea
 	</div>
 	<div class="btn-group" style="margin: 8px 10px 0 10px;">
 		<p>
-		<a href="<?php $current_url = explode("&", $_SERVER['REQUEST_URI']); echo $current_url[0];?>&ac=faq" style="color: #b1c1ca" >FAQ  <img src="<?php echo plugin_dir_url( __FILE__ );?>assets/10.png" /></a></p>
+		<a href="<?php $current_url = explode("?", $_SERVER['REQUEST_URI']); echo $current_url[0];?>?page=readygraph-app&ac=faq" style="color: #b1c1ca" >FAQ  <img src="<?php echo plugin_dir_url( __FILE__ );?>assets/10.png" /></a></p>
 	</div>
 	<div class="btn-group" style="">
 		<p><a href="https://readygraph.com/accounts/payment/?email=<?php echo get_option('readygraph_email', '') ?>" target="_blank" style="color: #b1c1ca" ><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/go-premium.png" height="40px" style="margin:5px" /></a></p>
 	</div>
 	</div>
-	
-	<div class="tutorial-true" style="margin: 5% auto;">
-		<h3 style="font-weight: normal; text-align: center;">Frequenty Asked Questions</h3>
-		
-<h4> GENERAL QUESTIONS: </h4>
-
-<b>What is ReadyGraph?</b>
-
-<p>ReadyGraph is a tool that makes it easy for websites to grow and manage their user-base, by allowing/utilizing: <b>user sign-up</b>, through an optional notification tab and an intelligent pop-up, with one-click sign-up and social login options; <b>user friend invitations</b>, through the sign-up pop-up, or a sidebar button; <b>automated emails</b>(optional) that keep visitors coming back, such as welcome messages to greet new users, recent site updates/posts to keep them informed, gentle reminders for inactive users, and a weekly digest of new content; <b>mass emailing</b>, for fast communication to all your subscribers; <b>user-interaction</b>, through an optional comment-feed sidebar; <b>analytic tools</b>, to track new subscribers, daily visits, and other key metrics that quantify your website’s growth and user engagement.</p>
-
-<b>How do I install ReadyGraph?</b>
-
-<p>After installing this plug-in, you can activate the ReadyGraph features by connecting/signing-up for your ReadyGraph account.</p>
-
-<b>How do I uninstall ReadyGraph?</b>
-
-<p>You can deactivate the ReadyGraph features by navigating to the upper-right corner of the “ReadyGraph App” page, clicking the drop-down menu with your email address, and disconnecting your ReadyGraph account.</p>
-
-<b>Can I delay the sign-up pop-up?</b>
-
-<p>Yes, you can delay the pop-up for up to 20 minutes; however, the most effective delay is only a few seconds. That ensures that users are engaged, before showing the pop-up to them. </p>
-
-<b>How do I check my website’s stats?</b>
-
-<p>You can check your website’s stats by clicking the “Insights” button at the upper-right corner of the “ReadyGraph App” page. There, you will find various metrics about your site growth.</p>
-
-<b>Can I use both the pop-up and the form widget?</b>
-
-<p>Yes, you can; they will not conflict with each other.</p>
-
-<b>How do I contact someone for support, or to suggest a feature?</b>
-
-<p>You can contact us at info@readygraph.com. We appreciate all feedback.</p>
-
-<b>I’m having problems with the latest version of the plug-in; can I switch back to an older version?</b>
-
-<p>Yes, just navigate to the “Developers” tab on the wordpress.org plug-in page, and select the version that works for you.</p>
-
-<h4> ACCOUNT QUESTIONS: </h4>
-
-<b>How do I change my account email address?</b>
-
-<p>Contact us as info@readygraph.com.</p>
-
-<b>How do I turn off email notifications from ReadyGraph?</b>
-
-<p>You can turn them off via the account settings page on ReadyGraph.com.</p>
-
-<b>How do I disconnect ReadyGraph from my site?</b>
-
-<p>You can disconnect ReadyGraph from your site by navigating to the upper-right corner of the “ReadyGraph App” page in this plug-in, and clicking the drop-down menu with your email address on it; there will be an option there to disconnect ReadyGraph from your site.</p>
-
-<h4> CUSTOMIZATION QUESTIONS: </h4>
-
-<b>Can I customize the pop-up?</b>
-
-<p>Yes, you can choose a template that matches your site design, from the various templates available.</p>
-
-<b>Can I customize the friend-invite form?</b>
-
-<p>You can customize the text on the friend invite form to something that suits your website.</p>
-
-<b>Can I customize my emails?</b>
-
-Yes, on the right side of the “ReadyGraph App” page, you will find a link to a page where you can Configure/Enable/Disable the various automated emails that you can send via ReadyGraph.</p>
-
-<h4> QUESTIONS ABOUT YOUR SUBSCRIBERS: </h4>
-
-<b>How do I view my subscribers?</b>
-
-<p>Clicking the “Insights” button at the top of the “ReadyGraph App” page of this plug-in will take you to a page where you can view a list of your subscribers.</p>
-
-<b>How do I mail my subscribers?</b>
-
-<p>On the right side of the “ReadyGraph App” page, you will find a link to a page where you can send mass emails to your subscribers.</p>
-
-<b>Can I import a list of existing subscribers?</b>
-
-<p>This is a feature currently under development and is scheduled to be released in our next update.</p>
-
-<b>Can I export a list of my subscribers?</b>
-
-<p>This is a feature currently under development and is scheduled to be released in our next update.</p> 
-
-<b>If I decide to stop using ReadyGraph, do I keep my subscribers?</b>
-
-<p>Yes, contact us at info@readygraph.com for assistance.</p>
-
-<b>Can I send automated emails/newsletters to my subscribers?</b>
-
-<p>On the right side of the “ReadyGraph App” page, you will find a link to a page where you can Enable/Disable/Configure the various automated emails that you can send via ReadyGraph.</p>
-
-<b>Is ReadyGraph necessary in order to use this plug-in?</b>
-
-<p>No, it isn’t; you can use this plug-in without ReadyGraph features enabled, but you would be missing out on added growth opportunities.</p>
-
-If you have questions or concerns, contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
+	<div style="margin: 3% 5%">
+		<img src="<?php echo plugin_dir_url( __FILE__ );?>assets/15.png" style="float: right;margin-left: 10%;" width="310px" height="350px">
+		<h3><strong>Effortlessly Increase Your Site's Userbase</strong></h3>
+			
+			<h4> Scale your audience faster with our Premium Growth Features:</h4>
+			<div style="width: 60%;">
+			<h4 class="rg-h4"><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/round-check.png" class="rg-small-icon"/>Your site promoted to 10,000 New Users Every Month in our Community Email Update</h4>
+			<h4 class="rg-h4"><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/round-check.png" class="rg-small-icon"/>Unlimited Viral Email/Facebook Invites</h4>
+			<h4 class="rg-h4"><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/round-check.png" class="rg-small-icon"/>Unlimited Blog Post Notifications</h4>
+			<h4 class="rg-h4"><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/round-check.png" class="rg-small-icon"/>Premium Phone/Email Support</h4>
+			<h4 class="rg-h4"><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/round-check.png" class="rg-small-icon"/>More Premium Features Added All The Time!</h4>
+			<br>
+			<a href="https://readygraph.com/accounts/payment/?email=<?php echo get_option('readygraph_email', '') ?>" target="_blank"><img src="<?php echo plugin_dir_url( __FILE__ );?>assets/go-premium.png" height="40px" style="margin:5px"/></a>
+			</div>
+			<div style="margin: 65px 0; width: 100%; display: block;">
+				<div class="rg-three-column" style="float: left">
+					<img src="<?php echo plugin_dir_url( __FILE__ );?>assets/12.png" height="40px" style="margin:15px"/>Explosive Website Growth
+				</div>
+				<div class="rg-three-column" style="float: left">
+					<img src="<?php echo plugin_dir_url( __FILE__ );?>assets/13.png" height="40px" style="margin:15px"/>Develop a Community of Users
+				</div>
+				<div class="rg-three-column" style="float: left">
+					<img src="<?php echo plugin_dir_url( __FILE__ );?>assets/14.png" height="40px" style="margin:15px"/>Track Growth with Powerful Analytics
+				</div>
+			</div>
+			<p><h4 class="rg-h4">ReadyGraph Premium equips your Wordpress site with the industry's most powerful proven growth features. Websites have used our tools to increase their growth rate by upto 70X.</h4></p>
+			<p><h4 class="rg-h4">Don't keep keep your website a secret! Set your growth to "full-blast" with ReadyGraph.</h4>	</p>
+			<p><h4 class="rg-h4"><a href="https://readygraph.com/accounts/payment/?email=<?php echo get_option('readygraph_email', '') ?>">Start A Free Trial Today!</a> </h4></p>
+			
 	</div>
-	
 </div>
 </form>
 <script type="text/javascript" src="https://readygraph.com/scripts/readygraph.js"></script>
@@ -293,7 +247,6 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 			$(document.body).bind('click', parent_disable);
 		});
 		$(".change-account").click(function() {
-			document.cookie="readygraph_tutorial=true"
 			var url = authHost + '/oauth/authenticate?client_id=' + settings.clientId + '&redirect_uri=' + encodeURIComponent(location.href.replace('#' + location.hash,"")) + '&response_type=token';
 			var logout = authHost + '/oauth/logout?redirect=' + encodeURIComponent(url);
 			openPopup(logout);

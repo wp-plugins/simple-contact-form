@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R, Tanay Lakhani
-Version: 14.5
+Version: 14.6
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -232,6 +232,11 @@ function gCF_add_to_menu()
 	if (is_admin()) 
 	{
 	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
+	}
+	if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php')) {
+	add_submenu_page('simple-contact-form', 'Go Premium', __( 'Go Premium', 'simple-contact-form' ), 'administrator', 'readygraph-go-premium', 'readygraph_menu_page');
+	}
+	else {
 	}
 }
 
