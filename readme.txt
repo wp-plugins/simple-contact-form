@@ -6,7 +6,7 @@ Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 3.8
-Stable tag: 14.7.1
+Stable tag: 14.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -267,6 +267,13 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Upgrade Notice ==
 
+= 14.7.2 =
+
+1. ReadyGraph Premium Features
+2. UI Tweaks
+3. Disconnect/Delete Readygraph Link fix
+4. Deactivation confirmation message
+
 = 14.5 =
 
 1. Bug Fix - disable popup
@@ -354,6 +361,13 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 14.7.2 =
+
+1. ReadyGraph Premium Features
+2. UI Tweaks
+3. Disconnect/Delete Readygraph Link fix
+4. Deactivation confirmation message
 
 = 14.5 =
 
