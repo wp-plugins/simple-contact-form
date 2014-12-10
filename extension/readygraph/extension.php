@@ -1,8 +1,8 @@
 <?php
 // ReadyGraph Extension
 //
-if(!function_exists('add_readygraph_plugin_warning')) {
-function add_readygraph_plugin_warning() {
+if(!function_exists('add_gCF_readygraph_plugin_warning')) {
+function add_gCF_readygraph_plugin_warning() {
   if (get_option('readygraph_access_token', '') != '') return;
 
   global $hook_suffix, $current_user, $menu_slug;

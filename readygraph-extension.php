@@ -34,7 +34,7 @@ function gCF_myajax_submit() {
  // remove_action('admin_init', 'on_plugin_activated_redirect');
   
 //  add_action('admin_menu', 'add_readygraph_admin_menu_option');
-  add_action('admin_notices', 'add_readygraph_plugin_warning');
+  add_action('admin_notices', 'add_gCF_readygraph_plugin_warning');
   add_action('wp_footer', 'readygraph_client_script_head');
   add_action('admin_init', 'on_plugin_activated_readygraph_gCF_redirect');
 
@@ -185,3 +185,31 @@ function gCF_post_updated_send_email( $post_id ) {
 }
 add_action( 'publish_post', 'gCF_post_updated_send_email' );
 add_action( 'publish_page', 'gCF_post_updated_send_email' );
+if(get_option('gCF_wordpress_sync_users')){}
+else{
+add_action('plugins_loaded', 'rg_gCF_get_version');
+}
+function rg_gCF_get_version() {
+	if(get_option('gCF_wordpress_sync_users') && get_option('gCF_wordpress_sync_users') == "true")
+	{}
+	else {
+		if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){
+        gCF_wordpress_sync_users(get_option('readygraph_application_id'));
+		}
+    }
+}
+function gCF_wordpress_sync_users( $app_id ){
+	global $wpdb;
+   	$query = "SELECT gCF_email as email, gCF_date as user_date FROM {$wpdb->prefix}gCF ";
+	$subscribe2_users = $wpdb->get_results($query);
+	$emails = "";
+	$dates = "";
+	foreach($subscribe2_users as $user) {	
+		$emails .= $user->email . ","; 
+		$dates .= $user->user_date . ",";
+	}
+	$url = 'https://readygraph.com/api/v1/wordpress-sync-enduser/';
+	$response = wp_remote_post($url, array( 'body' => array('app_id' => $app_id, 'email' => rtrim($emails, ", "), 'user_registered' => rtrim($dates, ", "))));
+	update_option('gCF_wordpress_sync_users',"true");
+	remove_action('plugins_loaded', 'rg_gCF_get_version');
+}

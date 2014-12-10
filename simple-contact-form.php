@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R, Tanay Lakhani
-Version: 14.7.2
+Version: 14.8
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -49,13 +49,13 @@ function gCF()
 		  <?php 
 		  if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){?>
 		  <div class="gcf_title">
-			<input type="button" name="button" value="Submit" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/','<?php echo get_option('readygraph_application_id', ''); ?>');">
+			<input type="button" name="button" value="<?php _e('Submit', 'simple-contact-form'); ?>" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/','<?php echo get_option('readygraph_application_id', ''); ?>');">
 		  </div>
 		  
 		  <p style="max-width:180px;font-size: 10px;margin-bottom:10px;margin-left:10px;">By signing up, you agree to our <a href="http://www.readygraph.com/tos">Terms of Service</a> and <a href='http://readygraph.com/privacy/'>Privacy Policy</a>.</p>
 		  <?php } else { ?> 
 		  <div class="gcf_title">
-			<input type="button" name="button" value="Submit" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/','');">
+			<input type="button" name="button" value="<?php _e('Submit', 'simple-contact-form'); ?>" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/','');">
 		  </div>
 		  <?php } ?>
 
@@ -224,21 +224,24 @@ function readygraph_menu_page(){
 function gCF_add_to_menu() 
 {
 
-	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'readygraph_menu_page' );
-	global $menu_slug;
 	if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php')) {
+	global $menu_slug;
+	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'readygraph_menu_page' );
+
 	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', $menu_slug, 'readygraph_menu_page');
-	}
-	else {
-	}
 	if (is_admin()) 
 	{
 	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
 	}
-	if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php')) {
 	add_submenu_page('simple-contact-form', 'Go Premium', __( 'Go Premium', 'simple-contact-form' ), 'administrator', 'readygraph-go-premium', 'readygraph_premium_page');
 	}
 	else {
+	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'gCF_admin' );
+	if (is_admin()) 
+	{
+	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
+	}
+
 	}
 }
 
