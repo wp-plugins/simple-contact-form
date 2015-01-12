@@ -88,6 +88,9 @@ function _multipledelete(pagenum)
 }
 </script>
 <div class="wrap">
+<?php wp_enqueue_style('ee_rg_admin_template', plugins_url() ."/simple-contact-form/extension/readygraph/assets/css/upgrade.css");
+
+echo '<div class="rg_info rg_message"><img src="'.plugins_url() .'/simple-contact-form/extension/readygraph/assets/Sign-Alert-icon.png" style="float: left;height: 50px;padding-right: 10px;"><a href="admin.php?page=readygraph-app"><button class="button-warning pure-button" style="float: right; margin-right: 15px;">Connect ReadyGraph</button></a><h3 style="color:white">Grow your site traffic faster: Activate Simple Contact Form\'s User Growth Engine (ReadyGraph)</h3><p style="color: whitesmoke">Promotion to New Users | Viral Signup Form | Site Update emails | Import Existing Users</p></div>'; ?>
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
     <h2><?php _e('Simple contact form', 'simple-contact-form'); ?></h2>
     <div class="tool-box">
