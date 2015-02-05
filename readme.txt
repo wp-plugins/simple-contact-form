@@ -5,8 +5,8 @@ Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Requires at least: 3.4
-Tested up to: 3.8
-Stable tag: 14.9
+Tested up to: 4.1
+Stable tag: 14.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -274,6 +274,11 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 3. Admin Screen. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 
 == Upgrade Notice ==
+
+= 14.10 =
+
+1. Readygraph premium plan selections
+2. Site profile for readygraph promotions
 
 = 14.9 =
 
