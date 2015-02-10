@@ -6,7 +6,7 @@ Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 4.1
-Stable tag: 14.10
+Stable tag: 14.10.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -275,6 +275,11 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Upgrade Notice ==
 
+= 14.10.1 =
+
+1. Readygraph premium plan default change
+2. Bug fixes
+
 = 14.10 =
 
 1. Readygraph premium plan selections
@@ -383,6 +388,11 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 14.10.1 =
+
+1. Readygraph premium plan default change
+2. Bug fixes
 
 = 14.9 =
 
