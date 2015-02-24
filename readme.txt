@@ -3,7 +3,7 @@ Contributors: Dabelon, wenzhixue, tanaylakhani, www.gopiplus.com, gopiplus
 Tags: contact form, simple contact form
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
-Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+Plugin URI: http://plugins.readygraph.com/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 4.1
 Stable tag: 14.10.1
@@ -14,12 +14,14 @@ Simple contact form plug-in provides a simple Ajax based contact form on your wo
 
 == Description ==
 
-Check official website for live demo [http://www.gopiplus.com/work/2010/07/18/simple-contact-form/](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)
+Check official website for live demo http://plugins.readygraph.com/simple-contact-form/
 
-*   [Live demo](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)  
-*   [More Description](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)  
-*   [About Author](http://www.gopiplus.com/work/)  
-*   [Suggenstion/comments](http://www.gopiplus.com/work/2010/07/18/simple-contact-form//)   
+* [Live demo](http://plugins.readygraph.com/simple-contact-form/)
+
+* [More Description](http://plugins.readygraph.com/simple-contact-form/)
+
+* [Suggestion/comments](http://plugins.readygraph.com/simple-contact-form/)
+  
 
 Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry. And we have option to stop sending emails to admin. This plug-in generates images (known as "Captcha's") which contain security codes used for protecting a form from spam.
 
@@ -31,7 +33,7 @@ This plugin has integrated [ReadyGraph](http://readygraph.com/), an optional set
 	- Cloud-based analytics and data storage
 	- Settings that allow you to turn on and off all ReadyGraph features.
 	
-**Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)**
+**Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin - [Email Newsletter plugin](http://plugins.readygraph.com/email-newsletter/)**
 
 1. Simple.  
 2. Admin can choose which page(Front end post, pages, home, search) this plugin should display.  
@@ -41,8 +43,8 @@ This plugin has integrated [ReadyGraph](http://readygraph.com/), an optional set
 6. Ajax, so no page refresh.
 6. Captcha to avoid spam.
 7. Send email to admin option available (This is optional, admin can set on/off for email).
-8. Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
-http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+8. Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin- [Email Newsletter plugin](http://plugins.readygraph.com/email-newsletter/)
+http://plugins.readygraph.com/simple-contact-form/
 
 = ReadyGraph App =
 
@@ -112,7 +114,7 @@ If you have questions or concerns contact us anytime at [info@readygraph.com](ma
 Now this plugin is integrated with Readygraph Growth Engine. It means all the features at [ReadyGraph](http://readygraph.com/) can be accessed from wordpress plugin, more customization options are on its way..
 
 **version 7.0**				
-Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
+Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin - [Email Newsletter plugin](http://plugins.readygraph.com/email-newsletter/)
 Tested upto 3.2.1		
 
 **version 6.0**				
@@ -130,32 +132,36 @@ To change the Captcha color scheme.
 
 <code><?php if (function_exists (gCF)) gCF(); ?></code>
 			
-[Live demo](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)  
-[More Description](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)  
+[Live demo](http://plugins.readygraph.com/simple-contact-form/)  
+[More Description](http://plugins.readygraph.com/simple-contact-form/)  
 [About Author](http://www.gopiplus.com/work/)  
-[Suggenstion/comments](http://www.gopiplus.com/work/2010/07/18/simple-contact-form//)   
+[Suggenstion/comments](http://plugins.readygraph.com/simple-contact-form/)   
 
 == Installation ==
+
+Installation Instruction and Configuration can also be found at [Installation Instruction and Configuration](http://plugins.readygraph.com/simple-contact-form/installation/)
 
 **Installation Instruction & Configuration**  	
 
 **Method 1**	
 
-[File upload using ftp](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)	 
+[File upload using ftp](http://plugins.readygraph.com/simple-contact-form/)	 
  
 **Method 2**	
 			
-[Direct upload from website admin](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)	 
+[Direct upload from website admin](http://plugins.readygraph.com/simple-contact-form/)	 
 
 **Method 3**
 
-[Upload from website admin with ZIP file](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)	 	
+[Upload from website admin with ZIP file](http://plugins.readygraph.com/simple-contact-form/)	 	
 
 **Configuration**
 
-We have 2 option to configure this plugin [click here](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)  to see more info.
+We have 2 option to configure this plugin [click here](http://plugins.readygraph.com/simple-contact-form/)  to see more info.
 
 == Frequently Asked Questions ==
+
+For detailed FAQ and other support visit [http://plugins.readygraph.com/simple-contact-form/faq/](http://plugins.readygraph.com/simple-contact-form/faq/)
 
 Q1. How to customize this plugin?
 
@@ -167,7 +173,7 @@ Q4. Is this send any mail to site admin?
 
 Q5. How To change the captcha color scheme?
 
-[View answer for all above question](http://www.gopiplus.com/work/2010/07/18/simple-contact-form/)
+[View answer for all above question](http://plugins.readygraph.com/simple-contact-form/)
 
 = ReadyGraph FAQ =
 
@@ -267,11 +273,11 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Screenshots ==
 
-1. Front Screen. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+1. Front Screen. http://plugins.readygraph.com/simple-contact-form/screenshots/
 
-2. Admin Screen. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+2. Admin Screen. http://plugins.readygraph.com/simple-contact-form/screenshots/
 
-3. Admin Screen. http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
+3. Admin Screen. http://plugins.readygraph.com/simple-contact-form/screenshots/
 
 == Upgrade Notice ==
 
@@ -364,7 +370,7 @@ Tested up to 3.3
 JavaScript & StyleSheet has been added as per WP standard.
 
 = 7.0 =			
-Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
+Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin - [Email Newsletter plugin](http://plugins.readygraph.com/email-newsletter/)	
 Tested upto 3.2.1
 
 = 6.0 =
@@ -473,7 +479,7 @@ Tested up to 3.3
 JavaScript & StyleSheet has been added as per WP standard.
 
 = 7.0 =			
-Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin(Email Newsletter plugin http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
+Now this plugin has been integrated with Email Newsletter plugin, It means admin can send the Mails/Newsletters to those entered emails via my another wp plugin - [Email Newsletter plugin](http://plugins.readygraph.com/email-newsletter/)**
 Tested upto 3.2.1
 
 = 6.0 =
