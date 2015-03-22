@@ -40,65 +40,7 @@ function gCF_myajax_submit() {
 
 //add_filter( 'cron_schedules', 'readygraph_gCF_cron_intervals' );
 	add_option('readygraph_connect_notice','true');
-/*
-function readygraph_gCF_cron_intervals( $schedules ) {
-   $schedules['weekly'] = array( // Provide the programmatic name to be used in code
-      'interval' => 604800, // Intervals are listed in seconds
-      'display' => __('Every Week') // Easy to read display name
-   );
-   return $schedules; // Do not forget to give back the list of schedules!
-}
 
-
-add_action( 'rg_gCF_cron_hook', 'rg_gCF_cron_exec' );
-$send_blog_updates = get_option('readygraph_send_blog_updates');
-if ($send_blog_updates == 'true'){
-if( !wp_next_scheduled( 'rg_gCF_cron_hook' )) {
-   wp_schedule_event( time(), 'weekly', 'rg_gCF_cron_hook' );
-}
-}
-else
-{
-//do nothing
-}
-if ($send_blog_updates == 'false'){
-wp_clear_scheduled_hook( 'rg_gCF_cron_hook' );
-}
-function rg_gCF_cron_exec() {
-//	$send_blog_updates = get_option('readygraph_send_blog_updates');
-	$readygraph_email = get_option('readygraph_email', '');
-//	wp_mail($readygraph_email, 'Automatic email', 'Hello, this is an automatically scheduled email from WordPress.');
-	global $wpdb;
-   	$query = "SELECT ID, post_title FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_modified DESC LIMIT 5";
-	
-	global $wpdb;
-	$recentposts = $wpdb->get_results($query);
-	
-	echo "<h2> Recently Updated</h2>";
-	echo "<ul>";
-	$postdata = "";
-	$postdatalinks = "";
-	foreach($recentposts as $post) {
-		$postdata .= $post->post_title . ", "; 
-		$postdatalinks .= get_permalink($post->ID) . ", ";
-	$url = 'http://readygraph.com/api/v1/post.json/';
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => rtrim($postdata, ", "), 'message_link' => rtrim($postdatalinks, ", "),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
-
-	if ( is_wp_error( $response ) ) {
-	$error_message = $response->get_error_message();
-	//echo "Something went wrong: $error_message";
-	} 	else {
-	//echo 'Response:<pre>';
-	//print_r( $response );
-	//echo '</pre>';
-	}
-	echo "</ul>";
-
-	//endif;	
-   
-}
-}
-*/
 function rg_gCF_popup_options_enqueue_scripts() {
     if ( get_option('readygraph_popup_template') == 'default-template' ) {
         wp_enqueue_style( 'default-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/default-popup.css' );
@@ -122,23 +64,7 @@ function rg_gCF_popup_options_enqueue_scripts() {
         wp_enqueue_style( 'yellow-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/yellow-popup.css' );
     }
     if ( get_option('readygraph_popup_template') == 'custom-template' ) {
-        /*echo '<style type="text/css">
-			.rgw-lightbox .rgw-content-frame .rgw-content {
-				background: '.get_option("readygraph_popup_template_background").' !important;
-			}
-
-			.rgw-style{
-				color: '.get_option("readygraph_popup_template_text").' !important;
-			}
-			.rgw-style .rgw-dialog-header .rgw-dialog-headline, .rgw-style .rgw-dialog-header .rgw-dialog-headline * {
-				color: '.get_option("readygraph_popup_template_text").' !important;
-			}
-			.rgw-notify .rgw-float-box {
-				background: '.get_option("readygraph_popup_template_background").' !important;
-			}
-			.rgw-notify .rgw-social-status:hover{
-				background: '.get_option("readygraph_popup_template_background").' !important;
-			}</style>';*/
+        
 		wp_enqueue_style( 'custom-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/custom-popup.css' );
     }	
 }
@@ -160,21 +86,21 @@ function gCF_post_updated_send_email( $post_id ) {
 
 	$post_title = get_the_title( $post_id );
 	$post_url = get_permalink( $post_id );
+	$post_image = wp_get_attachment_url(get_post_thumbnail_id($post_id));
 	$post_content = get_post($post_id);
-	if (get_option('readygraph_send_real_time_post_updates')=='true'){
+	$post_excerpt = (isset($post_content->post_excerpt) && (!empty($post_content->post_excerpt))) ? $post_content->post_excerpt : wp_trim_words(strip_tags(strip_shortcodes($post_content->post_content)),500);
 	$url = 'http://readygraph.com/api/v1/post.json/';
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'is_realtime'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => wp_trim_words( $post_content->post_content, 100 ),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
+	if (get_option('readygraph_send_real_time_post_updates')=='true'){
+	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'is_realtime'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 	}
 	else {
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => wp_trim_words( $post_content->post_content, 100 ),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
+	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 	}
 	if ( is_wp_error( $response ) ) {
 	$error_message = $response->get_error_message();
-	//echo "Something went wrong: $error_message";
+
 	} 	else {
-	//echo 'Response:<pre>';
-	//print_r( $response );
-	//echo '</pre>';
+
 	}
 	$app_id = get_option('readygraph_application_id');
 	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=post_created&app_id=$app_id" );
