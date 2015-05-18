@@ -6,7 +6,7 @@ Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://plugins.readygraph.com/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 4.1
-Stable tag: 14.10.2
+Stable tag: 14.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -281,6 +281,10 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Upgrade Notice ==
 
+= 14.11 =
+
+1. Added ReadyGraph Monetization features
+
 = 14.10.2 =
 
 1. Get larger blog post for daily digest
@@ -399,6 +403,10 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 14.11 =
+
+1. Added ReadyGraph Monetization features
 
 = 14.10.1 =
 
