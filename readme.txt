@@ -6,11 +6,11 @@ Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://plugins.readygraph.com/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 4.1
-Stable tag: 14.11
+Stable tag: 14.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. Automate user growth through ReadyGraph integration.
+Provides a simple contact form on your wordpress website. Automate user growth and revenue with ReadyGraph integration.
 
 == Description ==
 
@@ -196,6 +196,12 @@ After installing this plug-in, you can activate the ReadyGraph features by conne
 
 You can deactivate the ReadyGraph features by navigating to the upper-right corner of the “ReadyGraph App” page, clicking the drop-down menu with your email address, and disconnecting your ReadyGraph account.
 
+**How do I reinstall ReadyGraph after I had deleted?**
+
+1. Get the latest plugin update/reinstall the plugin.
+2. Deactivate the plugin
+3. Activate the plugin
+
 **Can I delay the sign-up pop-up?**
 
 Yes, you can delay the pop-up for up to 20 minutes; however, the most effective delay is only a few seconds. That ensures that users are engaged, before showing the pop-up to them. 
@@ -285,6 +291,13 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 3. Admin Screen. http://plugins.readygraph.com/simple-contact-form/screenshots/
 
 == Upgrade Notice ==
+
+= 14.12 =
+
+1. Bug Fix for readygraph and compatibility with other plugins
+2. New code structure for readygraph
+3. User can delete the readygraph to completely remove it.
+4. Subsequent upgrades wont load readygraph except a plugin is disabled and re-enabled.
 
 = 14.11 =
 
@@ -408,6 +421,13 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 14.12 =
+
+1. Bug Fix for readygraph and compatibility with other plugins
+2. New code structure for readygraph
+3. User can delete the readygraph to completely remove it.
+4. Subsequent upgrades wont load readygraph except a plugin is disabled and re-enabled.
 
 = 14.11 =
 

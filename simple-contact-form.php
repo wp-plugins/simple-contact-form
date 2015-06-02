@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R, Tanay Lakhani
-Version: 14.11
+Version: 14.12
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -227,11 +227,11 @@ function readygraph_menu_page(){
 function gCF_add_to_menu() 
 {
 
-	if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php')) {
-	global $menu_slug;
+	if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php') && (get_option('readygraph_deleted') != "true")) {
+	global $gCF_menu_slug;
 	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'readygraph_menu_page' );
 
-	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', $menu_slug, 'readygraph_menu_page');
+	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', $gCF_menu_slug, 'readygraph_menu_page');
 	if (is_admin()) 
 	{
 	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
@@ -284,10 +284,24 @@ register_activation_hook(__FILE__, 'gCF_install');
 register_deactivation_hook(__FILE__, 'gCF_deactivation');
 add_action('init', 'gCF_widget_init');
 if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php' )) {
+if (get_option('readygraph_deleted') && get_option('readygraph_deleted') == 'true'){}
+else{
 include "readygraph-extension.php";
 }
-else{
+if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){
+register_deactivation_hook( __FILE__, 'gCF_readygraph_plugin_deactivate' );
 }
+function gCF_readygraph_plugin_deactivate(){
+	$app_id = get_option('readygraph_application_id');
+	update_option('readygraph_deleted', 'false');
+	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=simple_contact_form_plugin_uninstall&app_id=$app_id" );
+	gCF_delete_rg_options();
+}
+}
+else {
+
+}
+
 function gCF_rrmdir($dir) {
   if (is_dir($dir)) {
     $objects = scandir($dir);
@@ -316,9 +330,21 @@ delete_option('readygraph_delay');
 delete_option('readygraph_enable_sidebar');
 delete_option('readygraph_auto_select_all');
 delete_option('readygraph_enable_notification');
+delete_option('readygraph_enable_popup');
 delete_option('readygraph_enable_branding');
 delete_option('readygraph_send_blog_updates');
 delete_option('readygraph_send_real_time_post_updates');
 delete_option('readygraph_popup_template');
+delete_option('readygraph_upgrade_notice');
+delete_option('readygraph_adsoptimal_secret');
+delete_option('readygraph_adsoptimal_id');
+delete_option('readygraph_connect_anonymous');
+delete_option('readygraph_connect_anonymous_app_secret');
+delete_option('readygraph_tutorial');
+delete_option('readygraph_site_url');
+delete_option('readygraph_enable_monetize');
+delete_option('readygraph_monetize_email');
+delete_option('readygraph_plan');
 }
+
 ?>
