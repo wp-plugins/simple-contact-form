@@ -3,7 +3,7 @@
 Plugin Name: Simple contact form
 Description: Simple contact form plug-in provides a simple Ajax based contact form on your wordpress website side bar. User entered details are stored into database and at the same time admin will get email notification regarding the new entry.
 Author: Gopi.R, Tanay Lakhani
-Version: 14.12.1
+Version: 14.12.2
 Plugin URI: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2010/07/18/simple-contact-form/
@@ -47,7 +47,9 @@ function gCF()
 		  	<img src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/captcha.php?width=100&height=30&characters=5" />
 		  </div>
 		  <?php 
-		  if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){?>
+			$readygraph_api = get_option('readygraph_application_id');
+			$readygraph_access_token = get_option('readygraph_access_token');
+			if($readygraph_api && strlen($readygraph_api) > 0 && $readygraph_access_token && strlen($readygraph_access_token) > 0){?>
 		  <div class="gcf_title">
 			<input type="button" name="button" value="<?php _e('Submit', 'simple-contact-form'); ?>" onclick="javascript:gcf_submit(this.parentNode,'<?php echo get_option('siteurl'); ?>/wp-content/plugins/simple-contact-form/','<?php echo get_option('readygraph_application_id', ''); ?>');">
 		  </div>
