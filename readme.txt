@@ -6,7 +6,7 @@ Author URI: http://www.gopiplus.com/work/
 Plugin URI: http://plugins.readygraph.com/simple-contact-form/
 Requires at least: 3.4
 Tested up to: 4.1
-Stable tag: 14.12.3
+Stable tag: 14.12.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -292,6 +292,10 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Upgrade Notice ==
 
+= 14.12.4 =
+
+1. Bug Fix for ReadyGraph
+
 = 14.12.3 =
 
 1. Bug Fix for ReadyGraph
@@ -433,6 +437,10 @@ Now 2 way to use.
 This is the first version.			
 
 == Changelog ==
+
+= 14.12.4 =
+
+1. Bug Fix for ReadyGraph
 
 = 14.12.3 =
 
