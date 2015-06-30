@@ -10,7 +10,7 @@
 function gCF_myajax_submit() {
 	if ($_POST['adsoptimal_id']) update_option('readygraph_adsoptimal_id',$_POST['adsoptimal_id']);
 	if ($_POST['adsoptimal_secret']) update_option('readygraph_adsoptimal_secret',$_POST['adsoptimal_secret']);
-	if ($_POST['readygraph_monetize'] && $_POST['readygraph_monetize']== "true") update_option('readygraph_enable_monetize',$_POST['readygraph_monetize']);
+	if (isset($_POST['readygraph_monetize'])) update_option('readygraph_enable_monetize',$_POST['readygraph_monetize']);
 	$email = $_POST['email'];
 	$name = $_POST['name'];
 	$message= "Sign up from Popup";	
@@ -134,7 +134,7 @@ function add_gCF_readygraph_plugin_warning() {
   
 	add_action('admin_notices', 'add_gCF_readygraph_plugin_warning');
 	if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){
-	if ((get_option('readygraph_access_token') && strlen(get_option('readygraph_access_token')) > 0) || (get_option('readygraph_enable_monetize') && get_option('readygraph_enable_monetize') == "true")){
+	if ((get_option('readygraph_access_token') && strlen(get_option('readygraph_access_token')) > 0)){
 	add_action('wp_footer', 'gCF_readygraph_client_script_head', 6);
 	}
 	}
@@ -237,36 +237,6 @@ function gCF_wordpress_sync_users() {
 			remove_action('plugins_loaded', 'gCF_wordpress_sync_users');
 		}
     }
-}
-function gCF_rg_connect(){
-	if(get_option('readygraph_connect_anonymous') != "true"){
-	$url = 'https://readygraph.com/api/v1/wordpress-rg-connect-anonymous/';
-	$randon_string = gCF_get_random_string();
-	$response = wp_remote_post($url, array( 'body' => array('app_secret' => $randon_string, 'website' => home_url())));
-	if ( is_wp_error( $response ) ) {
-	$error_message = $response->get_error_message();
-	} 	else {
-	$result = json_decode($response['body'],true);
-	$app_id = $result['data']['app_id'];
-	update_option('readygraph_connect_anonymous', 'true');
-	update_option('readygraph_application_id', $app_id);
-	update_option('readygraph_connect_anonymous_app_secret', $randon_string);
-	}
-}
-}
-function gCF_get_random_string()
-{
-	$valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	$length = 10;
-    $random_string = "";
-    $num_valid_chars = strlen($valid_chars);
-    for ($i = 0; $i < $length; $i++)
-    {
-        $random_pick = mt_rand(1, $num_valid_chars);
-        $random_char = $valid_chars[$random_pick-1];
-        $random_string .= $random_char;
-    }
-    return $random_string;
 }
 
 ?>
